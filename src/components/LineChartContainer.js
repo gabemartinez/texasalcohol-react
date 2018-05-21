@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts'
 
 import LineChartTools from '../components/LineChartTools'
 
@@ -25,7 +25,7 @@ const LineChartContainer = props => {
     return (
         <div className={classes.root}>
           <Grid container spacing={0}>
-            <Grid item xs={9} sm={9}>
+            <Grid item xs={12} sm={12}>
               <Paper className={classes.paper}>
                 <LineChart width={600} height={300} data={props.data}
                       margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -38,7 +38,7 @@ const LineChartContainer = props => {
                 </LineChart>
               </Paper>
             </Grid>
-            <Grid item xs={3} sm={3}>
+            <Grid item xs={12} sm={12}>
               <Paper className={classes.paper}>
                 <LineChartTools />
               </Paper>
