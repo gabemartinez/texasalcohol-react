@@ -25,7 +25,7 @@ const LineChartContainer = props => {
     return (
         <div className={classes.root}>
           <Grid container spacing={0}>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.paper}>
                 <LineChart width={600} height={300} data={props.data}
                       margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -38,7 +38,7 @@ const LineChartContainer = props => {
                 </LineChart>
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.paper}>
                 <LineChartTools />
               </Paper>

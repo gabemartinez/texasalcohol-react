@@ -27,12 +27,12 @@ const Report = (props) => {
     return (
         <div className={classes.root}>
           <Grid container spacing={0}>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.paper}>
                 <BarName barname={props.barname} locationAddress={props.locationAddress} tabcPermitNumber={props.tabcPermitNumber} />
               </Paper>
             </Grid>
-            <Grid item xs={12} sm={12}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.paper}>
                 <RanksBasedOnSales />
               </Paper>
