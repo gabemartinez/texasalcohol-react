@@ -17,7 +17,7 @@ class Nav extends Component {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          <form onSubmit={e => { e.preventDefault(); }} className="form-inline my-2 my-lg-0">
+          <form onSubmit={e => { e.preventDefault() }} className="form-inline my-2 my-lg-0">
             <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
             <button onClick={this.getRecords.bind(this)} className="btn btn-outline-success my-2 my-sm-0">Search</button>
           </form>

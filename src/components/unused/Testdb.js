@@ -10,7 +10,7 @@ class Testdb extends Component {
 
   render() {
     return (
-      <div><button onClick={this.getRecords.bind(this)}>Click me</button></div>
+      <button onClick={this.getRecords.bind(this)}>Click me</button>
     )
   }
 }

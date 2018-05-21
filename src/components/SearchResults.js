@@ -1,15 +1,9 @@
 import React from 'react'
 
-class SearchResults extends React.Component {
-
-  render() {
+const SearchResults = props => {
     return (
-      <div>
-        { this.props.numberofresults && <p>Number of Results: {this.props.numberofresults}</p>}
-        { this.props.error && <p>{this.props.error}</p>}
-      </div>
+        <p>Search results modal maybe?</p>
     )
-  }
 }
 
 export default SearchResults
