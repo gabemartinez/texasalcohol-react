@@ -42,12 +42,12 @@ const Report = (props) => {
                 <LineChartContainer data={props.data} />
               </Paper>
             </Grid>
-            <Grid item xs={3} sm={3}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.paper}>
                 <MonthlyRevenue />
               </Paper>
             </Grid>
-            <Grid item xs={9} sm={9}>
+            <Grid item xs={12} sm={6}>
               <Paper className={classes.paper}>
                 <Summary />
               </Paper>
