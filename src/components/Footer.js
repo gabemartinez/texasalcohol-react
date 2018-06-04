@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = props => {
     return (
-        <p>Texas MixedBev Analytics</p>
+        <p>Texas Mixed Bev Analytics</p>
     )
 }
 

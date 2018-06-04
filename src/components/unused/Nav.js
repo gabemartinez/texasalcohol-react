@@ -5,7 +5,7 @@ class Nav extends Component {
   getRecords = async () => {
     const api_call = await fetch(`https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"taxpayerNumber": 37247247242}`)
     const data = await api_call.json()
-    console.log(data)
+    // console.log(data)
   }
 
   render() {

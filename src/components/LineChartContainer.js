@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
 // import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts'
-import { ResponsiveLine } from '@nivo/line'
+// import { ResponsiveLine } from '@nivo/line'
 
 import LineChartTools from '../components/LineChartTools'
 
@@ -24,12 +24,12 @@ const styles = theme => ({
 
 const LineChartContainer = props => {
   const { classes } = props
-  console.log(props.data);
+  // console.log(props.data);
 
     return (
         <div className={classes.root}>
           <Grid container spacing={0}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>Line Chart
               {/* <Paper className={classes.paper}> */}
                 {/* <LineChart width={600} height={300} data={props.data}
                       margin={{top: 5, right: 30, left: 20, bottom: 5}}>
@@ -40,7 +40,7 @@ const LineChartContainer = props => {
                  <Legend />
                  <Line type="monotone" dataKey="returnTotal" stroke="#8884d8" activeDot={{r: 8}}/>
                 </LineChart> */}
-                <ResponsiveLine className={classes.responsiveLineStyle}
+                {/* <ResponsiveLine className={classes.responsiveLineStyle}
                        data={
                          [
                            {
@@ -347,7 +347,7 @@ const LineChartContainer = props => {
                                "symbolShape": "circle"
                            }
                        ]}
-                   />
+                   /> */}
               {/* </Paper> */}
             </Grid>
             <Grid item xs={12} sm={6}>

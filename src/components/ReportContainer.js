@@ -22,7 +22,7 @@ const styles = theme => ({
   },
 })
 
-const Report = (props) => {
+const ReportContainer = (props) => {
   const { classes } = props
     return (
         <div className={classes.root}>
@@ -62,8 +62,8 @@ const Report = (props) => {
     )
 }
 
-Report.propTypes = {
+ReportContainer.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Report)
+export default withStyles(styles)(ReportContainer)
