@@ -2,14 +2,16 @@ import React from 'react'
 import axios from 'axios'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import MenuItem from '@material-ui/core/MenuItem'
 import TextField from '@material-ui/core/TextField'
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import withTheme from '@material-ui/core/styles/withTheme'
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   container: {
@@ -34,20 +36,6 @@ const styles = theme => ({
   },
 })
 
-let id = 0;
-function createData(name, address) {
-  id += 1;
-  return { id, name, address };
-}
-
-const data = [
-  createData('Frozen yoghurt', '1204 AIRWAY BLVD'),
-  createData('Ice cream sandwich', '14261 MONTANA AVE STE A'),
-  createData('Eclair', '1204 AIRWAY BLVD'),
-  createData('Cupcake', '14261 MONTANA AVE STE A'),
-  createData('Gingerbread', '1204 AIRWAY BLVD'),
-];
-
 class SearchContainer extends React.Component {
 
   // componentDidMount() {
@@ -56,35 +44,35 @@ class SearchContainer extends React.Component {
   //   axios.get(ourUrl).then(response => {console.log(response.data)})
   // }
 
-  constructor(props) {
-    super(props)
-    this.getBars()
-    this.state = {
-      foundBars: [],
-      searchString: '',
-      barname: undefined,
-      searchresultstotal: undefined,
-      data: undefined,
-      tabcPermitNumber: undefined,
-      error: "",
-      value: ''
-    }
+  state = {
+    searchString: '',
+    foundBarsData: [],
+    foundBarsTotal: 0,
   }
 
-  getBars(event) {
-    console.log('get bars');
-    // this.setState({value: event.target.value});
-    const ourBarName = 'malo'.toUpperCase()
-    const ourUrl = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"locationName": { $regex: "${ourBarName}" }}`
-    axios.get(ourUrl).then(response => {console.log(response.data)})
+  // rowClick(value) {
+  //   console.log('row clicked');
+  //   console.log(value);
+  // }
+
+  getBars(value) {
+    console.log('get bars')
+    const searchValue = value.toUpperCase()
+    const ourUrl = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"locationName": { $regex: "${searchValue}" }}`
+    axios.get(ourUrl).then(response => {
+      console.log(response.data)
+
+      this.setState({
+        searchString: searchValue,
+        foundBarsData: response.data,
+        foundBarsTotal: response.data.length,
+      })
+    })
   }
 
   render () {
-
     const { classes } = this.props
-
     return (
-
       <div>
         <form className={classes.container} noValidate autoComplete="off">
           <TextField
@@ -97,11 +85,13 @@ class SearchContainer extends React.Component {
             helperText="ex. Malolam"
             fullWidth
             margin="normal"
-            onChange={this.getBars}
+            onChange={e => this.getBars(e.target.value)}
             value={this.state.value}
           />
         </form>
-
+        <Typography variant="headline" gutterBottom>
+          Found: {this.state.foundBarsTotal}
+        </Typography>
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>
@@ -111,21 +101,21 @@ class SearchContainer extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data.map(n => {
+              {this.state.foundBarsData.map((n, index) => {
                 return (
-                  <TableRow hover key={n.id}>
+                  // <TableRow hover key={index} onClick={e => this.rowClick(index)}>
+                  <TableRow hover key={index}>
                     <TableCell component="th" scope="row">
-                      {n.name}
+                      <Link to={`/report/${n.tabcPermitNumber}`}>{n.locationName}</Link>
                     </TableCell>
-                    <TableCell>{n.address}</TableCell>
+                    <TableCell>{n.locationAddress}</TableCell>
                   </TableRow>
-                );
+                )
               })}
             </TableBody>
           </Table>
         </Paper>
       </div>
-
     )
   }
 }
