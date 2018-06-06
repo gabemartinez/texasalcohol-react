@@ -17,30 +17,27 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-  buttonStyles: {
-    marginRight: 10
-  }
 }
 
-function Header(props) {
-  const { classes, styles } = props
+function ButtonAppBar(props) {
+  const { classes } = props
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static">
         <Toolbar>
-          <Typography variant="title" color="default" align="left" className={classes.flex}>
-            <a href="/">Texas Mixed Bev Analytics</a>
+          <Typography variant="title" color="inherit" className={classes.flex}>
+            Texas Mixed Bev Analytics
           </Typography>
-          <Button href="/" variant="outlined" color="default" className={classes.buttonStyles}>Home</Button>
-          <Button href="/search" variant="outlined" color="default">Search</Button>
+          <Button href="/">Home</Button>
+          <Button href="/search">Search</Button>
         </Toolbar>
       </AppBar>
     </div>
   )
 }
 
-Header.propTypes = {
+ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 }
 
-export default withStyles(styles)(Header)
+export default withStyles(styles)(ButtonAppBar)

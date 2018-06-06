@@ -12,52 +12,37 @@ import Summary from '../components/Summary'
 import SimilarBars from '../components/SimilarBars'
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
+  root: theme.mixins.gutters({
+    paddingTop: 16,
+    paddingBottom: 16,
+  }),
 })
 
 const ReportContainer = (props) => {
-  const { classes } = props
+  const { classes, match } = props
     return (
-        <div className={classes.root}>
-          <Grid container spacing={0}>
-            <Grid item xs={12} sm={6}>
-              <Paper className={classes.paper}>
-                <BarName barname={props.barname} locationAddress={props.locationAddress} tabcPermitNumber={props.tabcPermitNumber} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Paper className={classes.paper}>
-                <RanksBasedOnSales />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <Paper className={classes.paper}>
-                <LineChartContainer data={props.data} />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Paper className={classes.paper}>
-                <MonthlyRevenue />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Paper className={classes.paper}>
-                <Summary />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={12}>
-              <Paper className={classes.paper}>
-                <SimilarBars />
-              </Paper>
-            </Grid>
-          </Grid>
+        <div>
+          <Paper className={classes.root} elevation={4}>
+            <h3>TABC Permit Number: {match.params.reportId}</h3>
+              <Grid item xs={12} sm={6}>
+                  <BarName barname={props.barname} locationAddress={props.locationAddress} tabcPermitNumber={props.tabcPermitNumber} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                  <RanksBasedOnSales />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                  <LineChartContainer data={props.data} />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                  <MonthlyRevenue />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                  <Summary />
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                  <SimilarBars />
+              </Grid>
+          </Paper>
         </div>
     )
 }

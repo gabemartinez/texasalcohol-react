@@ -1,5 +1,5 @@
 import React from 'react'
-import './App.css'
+// import './App.css'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
 import Header from './components/Header'
@@ -20,7 +20,7 @@ class App extends React.Component {
           <Switch>
             <Route path="/" exact component={HomeContainer} />
             <Route path="/search" exact component={SearchContainer} />
-            <Route path="/report" exact component={ReportContainer} />
+            <Route path="/report/:reportId" exact component={ReportContainer} />
           </Switch>
         </Router>
         <Footer />
