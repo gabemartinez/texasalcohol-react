@@ -29,17 +29,22 @@ class SearchContainer extends React.Component {
   }
 
   getBars(value) {
-    console.log('get bars')
-    const searchValue = value.toUpperCase()
-    const ourUrl = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"locationName": { $regex: "${searchValue}" }}`
-    axios.get(ourUrl).then(response => {
-      console.log(response.data)
-      this.setState({
-        searchString: searchValue,
-        foundBarsData: response.data,
-        foundBarsTotal: response.data.length,
+    console.log('get bars ran')
+    console.log(value);
+    if (value === '') {
+      this.setState({searchString: '', foundBarsData: null, foundBarsTotal: 0})
+    } else {
+      const searchValue = value.toUpperCase()
+      const ourUrl = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"locationName": { $regex: "${searchValue}" }}`
+      axios.get(ourUrl).then(response => {
+        console.log(response.data)
+        this.setState({
+          searchString: searchValue,
+          foundBarsData: response.data,
+          foundBarsTotal: response.data.length,
+        })
       })
-    })
+    }
   }
 
   render () {
@@ -49,19 +54,6 @@ class SearchContainer extends React.Component {
       <Paper className={classes.root} elevation={4}>
 
         <form noValidate autoComplete="off">
-          {/* <TextField
-            id="search"
-            type="search"
-            label="Bar name"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            placeholder="Input bar name"
-            helperText="ex. Malolam"
-            margin="normal"
-            onChange={e => this.getBars(e.target.value)}
-            value={this.state.value}
-          /> */}
           <TextField
             id="search"
             label="Bar name"

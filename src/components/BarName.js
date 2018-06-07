@@ -5,7 +5,6 @@ const BarName = (props) => {
         <div>
           <p>{props.barname}</p>
           <p>{props.locationAddress}</p>
-          <p>Bar Details</p>
         </div>
     )
 }
