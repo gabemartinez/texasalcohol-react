@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Grid from '@material-ui/core/Grid'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom"
 import axios from 'axios'
 
 import BarName from '../components/BarName'
@@ -31,7 +31,7 @@ class ReportContainer extends React.Component {
 
   componentDidMount () {
     const { reportId } = this.props.match.params
-    // console.log(reportId);
+    // console.log(reportId)
     const ourUrl = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"tabcPermitNumber": "${reportId}" }`
     axios.get(ourUrl).then(response => {
       console.log(response.data)
@@ -49,25 +49,39 @@ class ReportContainer extends React.Component {
       return (
           <Router>
             <Paper className={classes.root} elevation={4}>
+
               <h3>TABC Permit Number: {this.state.tabcPermitNumber}</h3>
-                <Grid item xs={12} sm={6}>
+
+              <Grid container spacing={8}>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <BarName barname={this.state.locationName} locationAddress={this.state.locationAddress} />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <RanksBasedOnSales />
                 </Grid>
-                <Grid item xs={12} sm={12}>
-                    <LineChartContainer data={this.state.tabcPermitNumber} />
+              </Grid>
+
+              <Grid container spacing={8}>
+                <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <LineChartContainer barname={this.state.locationName} data={this.state.barData} />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+              </Grid>
+
+              <Grid container spacing={8}>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <MonthlyRevenue />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <Summary />
                 </Grid>
-                <Grid item xs={12} sm={12}>
+              </Grid>
+
+              <Grid container spacing={8}>
+                <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <SimilarBars />
                 </Grid>
+              </Grid>
+
             </Paper>
           </Router>
       )

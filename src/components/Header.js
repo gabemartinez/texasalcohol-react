@@ -23,7 +23,7 @@ function ButtonAppBar(props) {
   const { classes } = props
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{ backgroundColor: '#C62828' }}>
         <Toolbar>
           <Typography variant="title" color="inherit" className={classes.flex}>
             Texas Mixed Bev Analytics

@@ -20,7 +20,10 @@ function HomeContainer(props) {
           HOME CONTAINER
         </Typography>
         <Typography component="p">
-          Some home content goes here.
+          Some home content goes here. What is this about? Who are we?
+        </Typography>
+        <Typography component="p">
+          How to contact us
         </Typography>
       </Paper>
     </div>

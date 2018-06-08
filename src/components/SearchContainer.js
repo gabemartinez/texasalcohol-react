@@ -25,24 +25,37 @@ class SearchContainer extends React.Component {
   state = {
     searchString: '',
     foundBarsData: null,
-    foundBarsTotal: 0,
+    foundBarsTotal: undefined,
   }
 
   getBars(value) {
     console.log('get bars ran')
-    console.log(value);
-    if (value === '') {
-      this.setState({searchString: '', foundBarsData: null, foundBarsTotal: 0})
-    } else {
+    console.log(value)
+    if (value.length > 2) {
       const searchValue = value.toUpperCase()
       const ourUrl = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"locationName": { $regex: "${searchValue}" }}`
       axios.get(ourUrl).then(response => {
         console.log(response.data)
+
+        var obj = {}
+        for ( var i = 0, len = response.data.length; i < len; i++ ){
+          if(!obj[response.data[i]['tabcPermitNumber']]) obj[response.data[i]['tabcPermitNumber']] = response.data[i]
+        }
+        var newArr = []
+        for ( var key in obj ) newArr.push(obj[key])
+        console.log(newArr)
+
         this.setState({
           searchString: searchValue,
-          foundBarsData: response.data,
-          foundBarsTotal: response.data.length,
+          foundBarsData: newArr,
+          foundBarsTotal: newArr.length,
         })
+      })
+    } else {
+      this.setState({
+        searchString: '',
+        foundBarsData: null,
+        foundBarsTotal: undefined,
       })
     }
   }
