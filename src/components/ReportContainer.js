@@ -26,22 +26,45 @@ class ReportContainer extends React.Component {
     tabcPermitNumber: null,
     barData: [],
     locationName: '',
-    locationAddress: ''
+    locationAddress: '',
+    locationCity: '',
+    locationState: '',
+    locationZip: '',
   }
 
-  componentDidMount () {
+  async componentDidMount() {
+
+    // first request
     const { reportId } = this.props.match.params
-    // console.log(reportId)
     const ourUrl = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&q={"tabcPermitNumber": "${reportId}" }`
+    // const firstRequest = await
+    await
     axios.get(ourUrl).then(response => {
-      console.log(response.data)
-      this.setState({
-        barData: response.data,
-        tabcPermitNumber: reportId,
-        locationName: response.data[0].locationName,
-        locationAddress: response.data[0].locationAddress
-      })
+          console.log(response.data)
+          this.setState({
+            barData: response.data,
+            tabcPermitNumber: reportId,
+            locationName: response.data[0].locationName,
+            locationAddress: response.data[0].locationAddress,
+            locationCity: response.data[0].locationCity,
+            locationState: response.data[0].locationState,
+            locationZip: response.data[0].locationZip,
+          })
     })
+
+    // second request
+    const locationZip = this.state.locationZip
+    const ourUrlZips = `https://api.mlab.com/api/1/databases/${process.env.REACT_APP_MLAB_DB}/collections/${process.env.REACT_APP_MLAB_COLLECTION}?apiKey=${process.env.REACT_APP_MLAB_KEY}&l=10000&q={"locationZip": ${locationZip} }`
+    // const secondRequest = await
+    await
+    axios.get(ourUrlZips).then(responseZipData => {
+          console.log(responseZipData.data)
+    })
+
+    // testing
+    // console.log(firstRequest);
+    // console.log(secondRequest);
+
   }
 
   render() {
@@ -50,11 +73,9 @@ class ReportContainer extends React.Component {
           <Router>
             <Paper className={classes.root} elevation={4}>
 
-              <h3>TABC Permit Number: {this.state.tabcPermitNumber}</h3>
-
               <Grid container spacing={8}>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <BarName barname={this.state.locationName} locationAddress={this.state.locationAddress} />
+                    <BarName tabcPermitNumber={this.state.tabcPermitNumber} barname={this.state.locationName} locationAddress={this.state.locationAddress} locationCity={this.state.locationCity} locationState={this.state.locationState} locationZip={this.state.locationZip} />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
                     <RanksBasedOnSales />

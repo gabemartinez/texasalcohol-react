@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import {Line} from 'react-chartjs-2'
+import dollars from 'us-dollars'
 
 import LineChartTools from '../components/LineChartTools'
 
@@ -31,6 +32,8 @@ const LineChartContainer = props => {
   // console.log(ourLabels)
 
   var returnTotalData = props.data.map(function(elem) {
+      let theseDollars = dollars(elem.returnTotal)
+      console.log(theseDollars);
       return elem.returnTotal
   })
   // console.log(returnTotalData)
@@ -68,7 +71,7 @@ const LineChartContainer = props => {
         pointBorderWidth: 1,
         pointHoverRadius: 5,
         pointHoverBackgroundColor: 'rgba(63, 191, 63,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderColor: 'rgba(63, 191, 63,1)',
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
@@ -89,7 +92,7 @@ const LineChartContainer = props => {
         pointBorderWidth: 1,
         pointHoverRadius: 5,
         pointHoverBackgroundColor: 'rgba(191, 63, 63,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderColor: 'rgba(191, 63, 63,1)',
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
@@ -109,8 +112,8 @@ const LineChartContainer = props => {
         pointBackgroundColor: '#fff',
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgba(191, 63, 63,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBackgroundColor: 'rgba(188, 188, 0,1)',
+        pointHoverBorderColor: 'rgba(188, 188, 0,1)',
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
@@ -130,8 +133,8 @@ const LineChartContainer = props => {
         pointBackgroundColor: '#fff',
         pointBorderWidth: 1,
         pointHoverRadius: 5,
-        pointHoverBackgroundColor: 'rgba(191, 63, 63,1)',
-        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBackgroundColor: 'rgba(123, 68, 13,1)',
+        pointHoverBorderColor: 'rgba(123, 68, 13,1)',
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
