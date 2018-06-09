@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import {Line} from 'react-chartjs-2'
-import dollars from 'us-dollars'
+import numeral from 'numeral'
+import moment from 'moment'
 
 import LineChartTools from '../components/LineChartTools'
 
@@ -32,8 +33,6 @@ const LineChartContainer = props => {
   // console.log(ourLabels)
 
   var returnTotalData = props.data.map(function(elem) {
-      let theseDollars = dollars(elem.returnTotal)
-      console.log(theseDollars);
       return elem.returnTotal
   })
   // console.log(returnTotalData)
@@ -149,12 +148,42 @@ const LineChartContainer = props => {
   data.datasets[2].data = returnBeerData
   data.datasets[3].data = returnLiquorData
 
+  const options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return numeral(value).format('$0,0')
+                    }
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    // Include a dollar sign in the ticks
+                    callback: function(value, index, values) {
+                        return moment(value, "YYYYMMDD").format('L')
+                    }
+                }
+            }]
+        },
+        tooltips: {
+            enabled: true,
+            mode: 'single',
+            callbacks: {
+                label: function(tooltipItems, data) {
+                    return data.datasets[tooltipItems.datasetIndex].label +': ' + numeral(tooltipItems.yLabel).format('$0,0');
+                }
+            }
+        },
+    }
+
     return (
 
         <div className={classes.root}>
           <Grid container spacing={8}>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-              <Line data={data} />
+              <Line data={data} options={options} />
             </Grid>
             <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <LineChartTools />
