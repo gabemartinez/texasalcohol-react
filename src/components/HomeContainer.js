@@ -16,14 +16,8 @@ function HomeContainer(props) {
   return (
     <div>
       <Paper className={classes.root} elevation={4}>
-        <Typography variant="headline" component="h3">
-          HOME CONTAINER
-        </Typography>
         <Typography component="p">
-          Some home content goes here. What is this about? Who are we?
-        </Typography>
-        <Typography component="p">
-          How to contact us
+          Search for bars and compare alcohol revenue.
         </Typography>
       </Paper>
     </div>

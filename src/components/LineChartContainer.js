@@ -182,12 +182,12 @@ const LineChartContainer = props => {
 
         <div className={classes.root}>
           <Grid container spacing={8}>
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
               <Line data={data} options={options} />
             </Grid>
-            <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
+            {/* <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
               <LineChartTools />
-            </Grid>
+            </Grid> */}
           </Grid>
         </div>
     )
