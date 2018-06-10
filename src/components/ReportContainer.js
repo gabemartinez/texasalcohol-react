@@ -86,10 +86,10 @@ class ReportContainer extends React.Component {
           console.log('responseZipData.data');
           console.log(responseZipData.data)
 
-          this.setState({
-            elPasoRank: 55,
-            zipRank: 66,
-          })
+          // this.setState({
+          //   elPasoRank: 55,
+          //   zipRank: 66,
+          // })
     })
 
     // testing
