@@ -33,6 +33,7 @@ class ReportContainer extends React.Component {
     comparisonBarData: [],
     elPasoRank: Math.floor(Math.random() * 200),
     zipRank: Math.floor(Math.random() * 30),
+    stateRank: Math.floor(Math.random() * 3000),
     similarBarsData: [
       {name: 'CANTINA MALOLAM', tabcno: 'MB871033'},
       {name: 'HOPE AND ANCHOR', tabcno: 'MB726817'},
@@ -109,7 +110,7 @@ class ReportContainer extends React.Component {
                     <BarName tabcPermitNumber={this.state.tabcPermitNumber} barname={this.state.locationName} locationAddress={this.state.locationAddress} locationCity={this.state.locationCity} locationState={this.state.locationState} locationZip={this.state.locationZip} />
                 </Grid>
                 <Grid item xs={12} sm={12} md={6} lg={6} xl={6}>
-                    <RanksBasedOnSales locationZip={this.state.locationZip} elPasoRank={this.state.elPasoRank} zipRank={this.state.zipRank} />
+                    <RanksBasedOnSales locationZip={this.state.locationZip} elPasoRank={this.state.elPasoRank} zipRank={this.state.zipRank} stateRank={this.state.stateRank} />
                 </Grid>
               </Grid>
 

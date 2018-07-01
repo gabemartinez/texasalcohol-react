@@ -17,7 +17,7 @@ function HomeContainer(props) {
     <div>
       <Paper className={classes.root} elevation={4}>
         <Typography component="p">
-          Search for bars and compare alcohol revenue.
+          The Texas Mixed Bev Analytics allows you to search and view bar and restaurants alcohol revenue. Click Search in the navigation to begin.
         </Typography>
       </Paper>
     </div>

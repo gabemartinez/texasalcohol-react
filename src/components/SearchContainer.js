@@ -107,7 +107,7 @@ class SearchContainer extends React.Component {
             </Table>
           </div>
 
-        ) : "Use search field above."}
+        ) : "Use search field above to begin. ex. begin typing Cantina."}
 
       </Paper>
       </div>

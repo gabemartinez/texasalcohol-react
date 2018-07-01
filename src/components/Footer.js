@@ -17,7 +17,7 @@ function Footer(props) {
     <div>
       <Paper className={classes.root} elevation={1}>
         <Typography component="p">
-          Texas Mixed Bev Analytics
+          &copy; 2018 Texas Mixed Bev Analytics
         </Typography>
       </Paper>
     </div>
